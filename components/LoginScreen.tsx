@@ -11,10 +11,10 @@ const LoginScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>Sign In</Text>
 
       <TextInput
-        placeholder="Email"
+        placeholder="E-mail or phone number"
         value={email}
         onChangeText={setEmail}
         style={styles.input}
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   title: {
+    color: "#333333",
     fontSize: 32,
     marginBottom: 24,
     textAlign: 'center',

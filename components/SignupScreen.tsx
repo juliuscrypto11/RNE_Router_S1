@@ -1,25 +1,27 @@
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 const SignupScreen: React.FC = () => {
-const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
-const [confirmPassword, setConfirmPassword] = useState('');
-const [name, setName] = useState('');
-const [PhoneNumber, setPhoneNumber] = useState('');
-
+  const [name, setName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSignup = () => {
-    if (password !== confirmPassword) {
-      alert('Passwords do not match!');
+    // Basic validation
+    if (!name || !phoneNumber || !email || !password) {
+      Alert.alert('Missing Info', 'Please fill in all fields.');
       return;
     }
 
-    console.log('Signing up with:', email, password);
+    // Log input (you can replace this with an API call later)
+    console.log('Signing up with:', name, phoneNumber, email, password);
+    Alert.alert('Success', 'Sign up successful!');
   };
 
   const handleFacebookLogin = () => {
     console.log('Login with Facebook');
+    Alert.alert('Info', 'Facebook login clicked.');
   };
 
   return (
@@ -32,28 +34,28 @@ const [PhoneNumber, setPhoneNumber] = useState('');
         onChangeText={setName}
         style={styles.input}
         keyboardType="default"
-    />
+      />
 
- <TextInput
+      <TextInput
         placeholder="Phone Number"
-        value={name}
+        value={phoneNumber}
         onChangeText={setPhoneNumber}
         style={styles.input}
-        keyboardType="default"
-    />
+        keyboardType="phone-pad"
+      />
+
+      <TextInput
+        placeholder="E-mail"
+        value={email}
+        onChangeText={setEmail}
+        style={styles.input}
+        keyboardType="email-address"
+      />
 
       <TextInput
         placeholder="Password"
         value={password}
         onChangeText={setPassword}
-        style={styles.input}
-        secureTextEntry
-      />
-
-      <TextInput
-        placeholder="Confirm Password"
-        value={confirmPassword}
-        onChangeText={setConfirmPassword}
         style={styles.input}
         secureTextEntry
       />
@@ -85,6 +87,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     textAlign: 'center',
     fontWeight: 'bold',
+    color: '#802BB1',
   },
   input: {
     height: 48,
@@ -99,6 +102,7 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     borderRadius: 8,
     marginTop: 12,
+    alignItems: 'center',
   },
   fbButton: {
     backgroundColor: '#3b5998',
