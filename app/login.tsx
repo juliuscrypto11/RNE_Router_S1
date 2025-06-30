@@ -1,6 +1,6 @@
 import LoginScreen from "@/components/LoginScreen";
-const login = () => {
+const Login = () => {
   return <LoginScreen />;
 }
 
-export default login;
+export default Login;

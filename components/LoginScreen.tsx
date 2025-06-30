@@ -6,7 +6,6 @@ const LoginScreen: React.FC = () => {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    // Add your login logic here
     console.log('Logging in with:', email, password);
   };
 
@@ -54,14 +53,14 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 48,
-    borderColor: '#ccc',
+    borderColor: '#2D283E',
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 16,
     paddingHorizontal: 12,
   },
   button: {
-    backgroundColor: '#2e86de',
+    backgroundColor: '#802BB1',
     paddingVertical: 14,
     borderRadius: 8,
   },

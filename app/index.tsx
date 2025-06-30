@@ -5,7 +5,7 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <Text>My First React Native Expo App</Text>
-      <Link href="/login">Go to Login Form</Link>
+      <Link href="/Login">Go to Login Form</Link>
       <Link href="/signup">Go to Signup Form</Link>
     </View>
   );

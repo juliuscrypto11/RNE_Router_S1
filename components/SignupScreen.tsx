@@ -2,17 +2,24 @@ import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 const SignupScreen: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+const [confirmPassword, setConfirmPassword] = useState('');
+const [name, setName] = useState('');
+const [PhoneNumber, setPhoneNumber] = useState('');
+
 
   const handleSignup = () => {
     if (password !== confirmPassword) {
       alert('Passwords do not match!');
       return;
     }
-    // Add your signup logic here
+
     console.log('Signing up with:', email, password);
+  };
+
+  const handleFacebookLogin = () => {
+    console.log('Login with Facebook');
   };
 
   return (
@@ -20,12 +27,20 @@ const SignupScreen: React.FC = () => {
       <Text style={styles.title}>Sign Up</Text>
 
       <TextInput
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
+        placeholder="Name"
+        value={name}
+        onChangeText={setName}
         style={styles.input}
-        keyboardType="email-address"
-      />
+        keyboardType="default"
+    />
+
+ <TextInput
+        placeholder="Phone Number"
+        value={name}
+        onChangeText={setPhoneNumber}
+        style={styles.input}
+        keyboardType="default"
+    />
 
       <TextInput
         placeholder="Password"
@@ -45,6 +60,12 @@ const SignupScreen: React.FC = () => {
 
       <Pressable style={styles.button} onPress={handleSignup}>
         <Text style={styles.buttonText}>Sign Up</Text>
+      </Pressable>
+
+      <Text style={styles.orText}>or</Text>
+
+      <Pressable style={[styles.button, styles.fbButton]} onPress={handleFacebookLogin}>
+        <Text style={styles.buttonText}>Login With Facebook</Text>
       </Pressable>
     </View>
   );
@@ -67,20 +88,30 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 48,
-    borderColor: '#ccc',
+    borderColor: '#2D283E',
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 16,
     paddingHorizontal: 12,
   },
   button: {
-    backgroundColor: '#2e86de',
+    backgroundColor: '#802BB1',
     paddingVertical: 14,
     borderRadius: 8,
+    marginTop: 12,
+  },
+  fbButton: {
+    backgroundColor: '#3b5998',
   },
   buttonText: {
     color: '#fff',
     textAlign: 'center',
     fontSize: 16,
+  },
+  orText: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginVertical: 16,
+    color: 'black',
   },
 });
