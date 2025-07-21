@@ -42,11 +42,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#3b5998",
     paddingVertical: 12,
     borderRadius: 6,
-    width: 200,             // ✅ Same width for both buttons
-    alignItems: "center",   // ✅ Center text horizontally
+    width: 200,             
+    alignItems: "center",  
   },
   fbButton: {
-    backgroundColor: "#9400D3", // Keeps your violet tone
+    backgroundColor: "#9400D3",
   },
   buttonText: {
     color: "#fff",

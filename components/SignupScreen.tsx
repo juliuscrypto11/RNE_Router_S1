@@ -1,22 +1,38 @@
 import React, { useState } from 'react';
-import { Alert, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import {
+  Alert,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 
 const SignupScreen: React.FC = () => {
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSignup = () => {
-    // Basic validation
     if (!name || !phoneNumber || !email || !password) {
       Alert.alert('Missing Info', 'Please fill in all fields.');
       return;
     }
 
-    // Log input (you can replace this with an API call later)
     console.log('Signing up with:', name, phoneNumber, email, password);
     Alert.alert('Success', 'Sign up successful!');
+    setSubmitted(true);
+  };
+
+  const handleClear = () => {
+    setName('');
+    setPhoneNumber('');
+    setEmail('');
+    setPassword('');
+    setSubmitted(false);
   };
 
   const handleFacebookLogin = () => {
@@ -25,7 +41,7 @@ const SignupScreen: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Sign Up</Text>
 
       <TextInput
@@ -33,7 +49,6 @@ const SignupScreen: React.FC = () => {
         value={name}
         onChangeText={setName}
         style={styles.input}
-        keyboardType="default"
       />
 
       <TextInput
@@ -50,6 +65,7 @@ const SignupScreen: React.FC = () => {
         onChangeText={setEmail}
         style={styles.input}
         keyboardType="email-address"
+        autoCapitalize="none"
       />
 
       <TextInput
@@ -60,16 +76,34 @@ const SignupScreen: React.FC = () => {
         secureTextEntry
       />
 
+
       <Pressable style={styles.button} onPress={handleSignup}>
         <Text style={styles.buttonText}>Sign Up</Text>
       </Pressable>
 
+      <Pressable style={styles.button} onPress={handleClear}>
+        <Text style={styles.buttonText}>Clear</Text>
+      </Pressable>
+
       <Text style={styles.orText}>or</Text>
 
-      <Pressable style={[styles.button, styles.fbButton]} onPress={handleFacebookLogin}>
+      <Pressable
+        style={[styles.button, styles.fbButton]}
+        onPress={handleFacebookLogin}
+      >
         <Text style={styles.buttonText}>Login With Facebook</Text>
       </Pressable>
-    </View>
+
+      {submitted && (
+        <View style={styles.output}>
+          <Text style={styles.outputTitle}>Submitted Information:</Text>
+          <Text>Name: {name}</Text>
+          <Text>Phone: {phoneNumber}</Text>
+          <Text>Email: {email}</Text>
+          <Text>Password: {password}</Text>
+        </View>
+      )}
+    </ScrollView>
   );
 };
 
@@ -77,7 +111,7 @@ export default SignupScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     justifyContent: 'center',
     padding: 20,
     backgroundColor: '#fff',
@@ -117,5 +151,16 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 16,
     color: 'black',
+  },
+  output: {
+    marginTop: 30,
+    padding: 16,
+    backgroundColor: '#f1f1f1',
+    borderRadius: 10,
+  },
+  outputTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 8,
   },
 });
