@@ -97,7 +97,7 @@ const SignupScreen: React.FC = () => {
       {submitted && (
         <View style={styles.output}>
           <Text style={styles.outputTitle}>Submitted Information:</Text>
-          <Text>Name: {name}</Text>
+          <Text>Name: {name}</Text> 
           <Text>Phone: {phoneNumber}</Text>
           <Text>Email: {email}</Text>
           <Text>Password: {password}</Text>
